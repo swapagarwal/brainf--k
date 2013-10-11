@@ -75,13 +75,14 @@ def reset():
 
 def interactive():
     print """Welcome to the brainf**k Interpreter.
-Type (or paste) your program at the ">> " prompt.
+Type (or paste) your program at the "$ " prompt.
 Type ";" on an empty line to evaluate your program.
 Type "r" on an empty line to reset. (set all cells to 0)
-Type "q" on an empty line to quit."""
+Type "q" on an empty line to quit.
+"""
     code = ""
     while True:
-        line = str(raw_input(">> "))
+        line = str(raw_input("$ "))
         if line == "r":
             reset()
             code = ""
