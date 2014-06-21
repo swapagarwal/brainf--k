@@ -5,41 +5,46 @@ import sys
 cells = [0]*30000
 ptr = 0
 
-def gt():
+def inc_pointer():
+    """ Increment the position of the data pointer. """
     global ptr
     ptr += 1
 
-def lt():
+def dec_pointer():
+    """ Decrement the position of the data pointer. """
     global ptr
     ptr -= 1
 
 def plus():
+    """ Increment the byte at the pointer by 1. """
     global ptr
     cells[ptr] = (cells[ptr] + 1) % 256
 
 def minus():
+    """ Decrement the byte at the pointer by 1. """
     global ptr
     cells[ptr] = (cells[ptr] - 1) % 256
 
-def dot():
+def output_byte():
     global ptr
     sys.stdout.write(chr(cells[ptr]))
 
-def comma():
+def input_byte():
     global ptr
     c = ord(sys.stdin.read(1))
     cells[ptr] = c
 
 handle_directly = {
-    ">" : gt,
-    "<" : lt,
+    ">" : inc_pointer,
+    "<" : dec_pointer,
     "+" : plus,
     "-" : minus,
-    "." : dot,
-    "," : comma,
-    }
+    "." : output_byte,
+    "," : input_byte,
+}
 
 def parse(code):
+    """ Manage loops in source with [ and ]. """
     opening = []
     loop = {}
     for i,c in enumerate(code):
@@ -51,6 +56,7 @@ def parse(code):
     return loop
 
 def eval_bf(code):
+    """ Call correct functions based upon source code. """
     global ptr
     loop = parse(code)
     pc = 0
