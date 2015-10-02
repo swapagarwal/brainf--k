@@ -15,12 +15,12 @@ def dec_pointer():
     global ptr
     ptr -= 1
 
-def plus():
+def inc_byte():
     """ Increment the byte at the pointer by 1. """
     global ptr
     cells[ptr] = (cells[ptr] + 1) % 256
 
-def minus():
+def dec_byte():
     """ Decrement the byte at the pointer by 1. """
     global ptr
     cells[ptr] = (cells[ptr] - 1) % 256
@@ -37,8 +37,8 @@ def input_byte():
 handle_directly = {
     ">" : inc_pointer,
     "<" : dec_pointer,
-    "+" : plus,
-    "-" : minus,
+    "+" : inc_byte,
+    "-" : dec_byte,
     "." : output_byte,
     "," : input_byte,
 }
